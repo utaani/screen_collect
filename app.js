@@ -7,8 +7,12 @@ var express = require( 'express' ),
     fs = require( 'fs' ),
     ejs = require( 'ejs' ),
     app = express();
-var http = require( 'http' ).createServer( app );
-var io = require( 'socket.io' ).listen( http );
+var options = {
+    key: fs.readFileSync('privkey.pem'),
+    cert: fs.readFileSync('fullchain.pem'),
+};
+var https = require( 'https' ).createServer( options,app );
+var io = require( 'socket.io' ).listen( https );
 
 var settings = require( './settings' );
 
@@ -135,6 +139,6 @@ function timestamp2datetime( ts ){
 
 
 //app.listen( appEnv.port );
-var port = process.env.PORT || 8080;
-http.listen( port );
+var port = process.env.PORT || 8443;
+https.listen( port );
 console.log( "server starting on " + port + " ..." );
