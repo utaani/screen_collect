@@ -14,7 +14,11 @@ Social Application, which can **collect** all participant screen in real time.
 - PC Web Browser
 
     - Mobile Web Browser is not supported.(Not working)
+    
+- TLS private key and cert file
 
+    - privkey.pem / fullchain.pem
+    - privkey.pem have to no passphrase ,fullchain.pem include full CA certificate.
 
 ## Pre-requisite for IBM Cloud user
 
